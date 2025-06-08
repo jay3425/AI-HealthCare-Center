@@ -79,18 +79,10 @@ An interactive, AI-powered **healthcare assistant** built with Python and Tkinte
 
 ---
 
-## 📸 Screenshots / GIF Demo
+## 📸 Screenshots
 
-> Include here (example placeholders):
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png):
 
-* App Startup
-  ![](https://your-gif-or-image-link-1.gif)
-* Entering Symptoms & AI Prediction
-  ![](https://your-gif-or-image-link-2.gif)
-* Disease & Description Panel
-  ![](https://your-gif-or-image-link-3.gif)
-* Medication, Diet, Workout Popups
-  ![](https://your-gif-or-image-link-4.gif)
 
 ---
 
