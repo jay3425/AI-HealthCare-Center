@@ -15,6 +15,7 @@ import pickle
 root = tk.Tk()
 root.title("AI HealthCare Assistant")
 root.state('zoomed')
+root.iconbitmap(r'robot.ico') 
 root.config(bg="#ecf0f1")
 
 # ------------------ Canvas Background ------------------
