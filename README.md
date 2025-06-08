@@ -1,4 +1,3 @@
-````markdown
 # 🩺 AI HealthCare Assistant
 
 ![](https://your-gif-link-here.gif)
