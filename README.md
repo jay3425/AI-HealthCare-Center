@@ -103,20 +103,4 @@ Feel free to fork, modify, and build upon it.
 
 ⭐ If you like this project, give it a ⭐ and share it with others!
 
-```
-
 ---
-
-### Final Tips:
-
-✅ When you generate a GIF:
-- Use **ScreenToGif** or **LICEcap** to record a GIF of your app (entering symptoms → clicking analyze → displaying results).
-- Upload it to **your GitHub repo** and link it like:  
-  `![](https://github.com/your-username/your-repo/blob/main/assets/demo.gif)`
-
-✅ This format matches your **Stock Market README** very well — consistent branding across your projects!
-
----
-
-**Would you like me to also generate this as a ready `.md` file**, so you can directly upload it? Just say **yes** — I’ll generate and give you a download link. 🚀
-```
