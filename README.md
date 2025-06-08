@@ -1,6 +1,6 @@
 # 🩺 AI HealthCare Assistant
 
-![](https://your-gif-link-here.gif)
+![]()
 
 An interactive, AI-powered **healthcare assistant** built with Python and Tkinter. This system offers a complete health analysis dashboard — predicting diseases based on symptoms and recommending detailed precautions, medications, diets, and workout routines.
 
