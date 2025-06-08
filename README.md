@@ -81,7 +81,7 @@ An interactive, AI-powered **healthcare assistant** built with Python and Tkinte
 
 ## 📸 Screenshots
 
->  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png):
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
 
 
 ---
