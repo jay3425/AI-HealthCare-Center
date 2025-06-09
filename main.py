@@ -10,6 +10,35 @@ import tkinter as tk
 import numpy as np
 import pandas as pd
 import pickle
+from groq import Groq
+import json
+
+
+
+GroqAPIKey = "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"
+client = Groq(api_key=GroqAPIKey)
+
+System = """
+You are a very accurate AI HealthCare Assistant.
+
+You are provided with this list of symptoms:
+[itching, skin rash, nodal skin eruptions, continuous sneezing, shivering, chills, joint pain, stomach pain, acidity, ulcers on tongue, muscle wasting, vomiting, burning micturition, spotting urination, fatigue, weight gain, anxiety, cold hands and feets, mood swings, weight loss, restlessness, lethargy, patches in throat, irregular sugar level, cough, high fever, sunken eyes, breathlessness, sweating, dehydration, indigestion, headache, yellowish skin, dark urine, nausea, loss of appetite, pain behind the eyes, back pain, constipation, abdominal pain, diarrhoea, mild fever, yellow urine, yellowing of eyes, acute liver failure, fluid overload, swelling of stomach, swelled lymph nodes, malaise, blurred and distorted vision, phlegm, throat irritation, redness of eyes, sinus pressure, runny nose, congestion, chest pain, weakness in limbs, fast heart rate, dizziness, cramps, bruising, obesity, swollen legs, swollen blood vessels, puffy face and eyes, enlarged thyroid, brittle nails, swollen extremeties, excessive hunger, dry tingling lips, slurred speech, knee pain, hip joint pain, muscle weakness, stiff neck, swelling joints, movement stiffness, spinning movements, loss of balance, unsteadiness, weakness of one body side, loss of smell, bladder discomfort, foul smell of urine, continuous feel of urine, passage of gases, internal itching, depression, irritability, muscle pain, altered sensorium, red spots over body, belly pain, abnormal menstruation, watering from eyes, increased appetite, polyuria, coma, stomach bleeding, distention of abdomen, blood in sputum, palpitations, painful walking, pus filled pimples, blackheads, scurring, skin peeling, silver like dusting, small dents in nails, inflammatory nails, blister, red sore around nose, yellow crust ooze]
+
+When the user sends a message describing symptoms, you must return ONLY the list of matching symptoms from the above list.
+
+Do not return extra text, explanations, or notes. Just return a clean JSON list of matched symptoms.
+
+Example:
+
+User: "I have a headache and chest pain."
+
+AI Output:
+["headache", "chest pain"]
+
+--- Begin processing ---
+"""
+
+
 
 # ------------------ GUI Initialization ------------------
 root = tk.Tk()
@@ -78,23 +107,6 @@ def show_custom_alert(title, message):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # ------------------ Load Model and Data ------------------
 
 sym_des = pd.read_csv("symtoms_df.csv")
@@ -112,6 +124,38 @@ symptoms_dict = {'itching': 0, 'skin_rash': 1, 'nodal_skin_eruptions': 2, 'conti
 diseases_list = {15: 'Fungal infection', 4: 'Allergy', 16: 'GERD', 9: 'Chronic cholestasis', 14: 'Drug Reaction', 33: 'Peptic ulcer diseae', 1: 'AIDS', 12: 'Diabetes ', 17: 'Gastroenteritis', 6: 'Bronchial Asthma', 23: 'Hypertension ', 30: 'Migraine', 7: 'Cervical spondylosis', 32: 'Paralysis (brain hemorrhage)', 28: 'Jaundice', 29: 'Malaria', 8: 'Chicken pox', 11: 'Dengue', 37: 'Typhoid', 40: 'hepatitis A', 19: 'Hepatitis B', 20: 'Hepatitis C', 21: 'Hepatitis D', 22: 'Hepatitis E', 3: 'Alcoholic hepatitis', 36: 'Tuberculosis', 10: 'Common Cold', 34: 'Pneumonia', 13: 'Dimorphic hemmorhoids(piles)', 18: 'Heart attack', 39: 'Varicose veins', 26: 'Hypothyroidism', 24: 'Hyperthyroidism', 25: 'Hypoglycemia', 31: 'Osteoarthristis', 5: 'Arthritis', 0: '(vertigo) Paroymsal  Positional Vertigo', 2: 'Acne', 38: 'Urinary tract infection', 35: 'Psoriasis', 27: 'Impetigo'}
 
 # ------------------ Analyze Button Function ------------------
+# def analyze_symptoms():
+#     global symptoms
+#     global predicted_disease
+#     global desc
+#     global pre
+#     global med
+#     global die
+#     global wrkout
+#     symptoms = symptom_entry.get()
+#     # Clean and split the input
+    
+#     user_symptoms = [s.strip() for s in symptoms.split(',')]
+#     user_symptoms = [symptom.strip("[]' ") for symptom in user_symptoms]
+
+#     def get_predicted_value(user_symptoms):
+#         input_vector = np.zeros(len(symptoms_dict))
+#         for item in user_symptoms:
+#             input_vector[symptoms_dict[item]] = 1
+#         return diseases_list[svc.predict([input_vector])[0]]
+
+#     try:
+#         predicted_disease = get_predicted_value(user_symptoms)
+#         # show_custom_alert("AI Suggestion", f"Predicted Disease: {predicted_disease}")
+#         show_custom_alert("AI Suggestion", f"Symptoms analyzed: {symptoms}")
+#     except Exception as e:
+#         show_custom_alert("Error", f"Prediction failed: {str(e)} if symptoms did not match any disease then overlook Symptoms.txt for avalable symptoms.   Thanks!") 
+
+
+
+import json
+import numpy as np
+
 def analyze_symptoms():
     global symptoms
     global predicted_disease
@@ -120,23 +164,66 @@ def analyze_symptoms():
     global med
     global die
     global wrkout
-    symptoms = symptom_entry.get()
-    # Clean and split the input
-    user_symptoms = [s.strip() for s in symptoms.split(',')]
-    user_symptoms = [symptom.strip("[]' ") for symptom in user_symptoms]
 
-    def get_predicted_value(user_symptoms):
+    # Get symptoms input from user (as a string)
+    symptoms = symptom_entry.get().strip()
+
+    # Prepare a system prompt listing all known symptoms
+    symptom_list_str = ", ".join(symptoms_dict.keys())
+    system_prompt = (
+        "You are an AI HealthCare Assistant.\n\n"
+        "Here is the list of symptoms you should match user input against:\n"
+        f"[{symptom_list_str}]\n\n"
+        "When the user sends symptoms, reply ONLY with a JSON array (list) of matched symptoms "
+        "from the above list.\n\n"
+        "Example:\n"
+        'User: "I have headache and chest pain."\n'
+        'AI response:\n'
+        '["headache", "chest pain"]'
+    )
+
+    # Call the Groq AI model to extract matched symptoms
+    response = client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": symptoms}
+        ],
+        temperature=0  # Use zero temperature for accurate matching
+    )
+
+    # Extract the AI response text
+    llm_output = response.choices[0].message.content.strip()
+
+    # Try to parse AI output as JSON list of symptoms
+    try:
+        response = json.loads(llm_output)
+    except json.JSONDecodeError:
+        # If JSON parsing fails, fallback: split by comma and clean strings
+        response = [s.strip(" []'\"") for s in llm_output.split(',')]
+
+    # Helper function to predict disease from symptoms list
+    def get_predicted_value(response):
         input_vector = np.zeros(len(symptoms_dict))
-        for item in user_symptoms:
-            input_vector[symptoms_dict[item]] = 1
-        return diseases_list[svc.predict([input_vector])[0]]
+        for item in response:
+            if item in symptoms_dict:
+                input_vector[symptoms_dict[item]] = 1
+        predicted_index = svc.predict([input_vector])[0]
+        return diseases_list[predicted_index]
 
     try:
-        predicted_disease = get_predicted_value(user_symptoms)
-        # show_custom_alert("AI Suggestion", f"Predicted Disease: {predicted_disease}")
+        predicted_disease = get_predicted_value(response)
         show_custom_alert("AI Suggestion", f"Symptoms analyzed: {symptoms}")
     except Exception as e:
-        show_custom_alert("Error", f"Prediction failed: {str(e)} if symptoms did not match any disease then overlook Symptoms.txt for avalable symptoms.   Thanks!") 
+        show_custom_alert(
+            "Error",
+            f"Prediction failed: {str(e)}. "
+            "If symptoms did not match any disease, please check Symptoms.txt for available symptoms. Thanks!"
+        )
+
+
+
+
 
     # print("Analyzing:", symptoms)
     
@@ -161,19 +248,30 @@ def analyze_symptoms():
     
     desc, pre, med, die, wrkout = helper(predicted_disease)
 
+
+
+
 # ------------------ Individual Section Functions ------------------
 def show_disease():
-    show_custom_alert(" Disease",f"🦠 Predicted disease: {predicted_disease}")
-    print("Disease: ", predicted_disease)
+        show_custom_alert(" Disease", f"🦠 Predicted disease: {predicted_disease}")
+        print("Disease: ", predicted_disease)
+ 
 
 def show_description():
-    show_custom_alert("📋 Description: ",desc)
-    print("Description: ", predicted_disease)
+        show_custom_alert("📋 Description: ",desc)
+        print("Description: ", desc)
+
+
+
 
 def show_precaution():
     formatted_message = "\n".join([f"{i+1}: {x}" for i, x in enumerate(pre[0])])
     show_custom_alert("😷 Precaution: ", formatted_message)
     print("Precautions: ", formatted_message)
+
+
+
+
 
 def show_medications():
     # print(pre)
@@ -181,10 +279,16 @@ def show_medications():
     show_custom_alert("💊 Medications: ", formatted_message)
     print("Medications: ", formatted_message)
 
+
+
 def show_diets():
     formatted_message = "\n".join([f"{i+1}: {d}" for i, d in enumerate(eval(die[0]))])
     show_custom_alert("🍴 Diets: ", formatted_message)
     print("Diets: ", formatted_message)
+
+
+
+
 
 def show_workouts():
         # Add numbering to each workout
@@ -197,6 +301,9 @@ def show_workouts():
     # Show custom alert with formatted workout list
     show_custom_alert("🏃 Workouts", numbered_workouts)
     print("Workout: ", numbered_workouts)
+
+
+
 
 
 # ------------------ Header ------------------
