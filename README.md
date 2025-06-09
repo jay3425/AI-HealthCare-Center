@@ -81,6 +81,23 @@ This system predicts diseases based on user symptoms using a trained ML model, a
 Main App Dashboard
 >  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
 
+Symptom Input → Disease Prediction
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+
+Description Popups
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+
+Precautions Recommendations
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+
+Medications Recommendations
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+
+Diet Recommendations
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+
+Workout Recommendations
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
 
 ---
 
