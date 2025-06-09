@@ -15,7 +15,7 @@ import json
 
 
 
-GroqAPIKey = "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"
+GroqAPIKey = "Your_groqAPI_Key"
 client = Groq(api_key=GroqAPIKey)
 
 System = """
