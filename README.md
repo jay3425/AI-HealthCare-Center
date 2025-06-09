@@ -2,37 +2,35 @@
 
 ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/MainImg.png)
 
-An interactive, AI-powered **healthcare assistant** built with Python and Tkinter. This system offers a complete health analysis dashboard — predicting diseases based on symptoms and recommending detailed precautions, medications, diets, and workout routines.
+An interactive, AI-powered healthcare assistant built with Python and Tkinter.  
+This system predicts diseases based on user symptoms using a trained ML model, and provides personalized recommendations including precautions, medications, diets, and workout routines — all powered by an enhanced **AI chatbot (Groq Llama3)** for natural language symptom parsing.
 
 ---
 
 ## 🚀 Features
 
-### 🔐 User-friendly Interface
-- Minimalist **Tkinter-based GUI** with hover effects and modern design.
-- Interactive input for symptoms.
-- Modular AI response section with clear categorization.
+### 🤖 AI-Powered Symptom Analysis (Groq Llama3)
+- Uses **Groq Llama3-70B** model to intelligently extract valid symptoms from free-form user input.
+- Flexible natural language understanding — no need for perfect input formatting.
+- Returns a clean list of matched symptoms for ML model prediction.
 
-### 🧠 AI-Powered Disease Prediction
-- Machine Learning-based **disease prediction** using a trained SVC model.
-- Real-time analysis of user-input symptoms.
-- 100+ symptoms mapped to 40+ possible diseases.
+### 🧠 Disease Prediction
+- ML-based **disease prediction** using an SVC model.
+- Over **130+ symptoms** mapped to **40+ possible diseases**.
+- Displays the most probable disease based on user input.
 
-### 📋 Detailed Recommendations
-- Comprehensive **disease description** generated from the dataset.
-- **Precautions** to help prevent worsening.
-- **Medications** commonly prescribed for the disease.
-- **Diet plans** tailored to the condition.
-- Suggested **workout routines** to support recovery.
+### 📋 Comprehensive Recommendations
+- **Description** of the disease.
+- **Precautions** to follow.
+- **Medications** typically prescribed.
+- **Diet** suggestions to aid recovery.
+- **Workout** recommendations for wellness support.
 
-### 💬 Interactive AI Response Section
-- Easy-to-use buttons to display:
-  - 🦠 Disease name
-  - 📋 Description
-  - 😷 Precaution
-  - 💊 Medications
-  - 🍴 Diets
-  - 🏃 Workouts
+### 🖥️ Interactive GUI
+- Built with **Tkinter** — clean and responsive.
+- Hover effects on buttons.
+- Fully interactive response section.
+- Custom popup alerts with clean UI for displaying each category of information.
 
 ---
 
@@ -44,7 +42,7 @@ An interactive, AI-powered **healthcare assistant** built with Python and Tkinte
 - **Pandas** – for handling symptom, description, precaution, medication, and diet data.
 - **NumPy** – for model input processing.
 - **Pickle** – for loading trained models.
-
+- **Groq API** — for LLM-based symptom extraction
 ---
 
 ## 📂 File Structure
@@ -80,7 +78,7 @@ An interactive, AI-powered **healthcare assistant** built with Python and Tkinte
 ---
 
 ## 📸 Screenshots
-
+Main App Dashboard
 >  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
 
 
