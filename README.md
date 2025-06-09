@@ -31,6 +31,13 @@ This system predicts diseases based on user symptoms using a trained ML model, a
 - Hover effects on buttons.
 - Fully interactive response section.
 - Custom popup alerts with clean UI for displaying each category of information.
+- Easy-to-use buttons to display:
+  - 🦠 Disease name
+  - 📋 Description
+  - 😷 Precaution
+  - 💊 Medications
+  - 🍴 Diets
+  - 🏃 Workouts
 
 ---
 
