@@ -101,6 +101,6 @@ Feel free to fork, modify, and build upon it.
 
 ---
 
-⭐ If you like this project, give it a ⭐ and share it with others!
+If you like this project, give it a ⭐ and share it with others!
 
 ---
