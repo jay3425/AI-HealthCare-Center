@@ -82,22 +82,22 @@ Main App Dashboard
 >  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
 
 Symptom Input → Disease Prediction
->  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(481).png)
 
 Description Popups
->  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(476).png)
 
 Precautions Recommendations
->  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(477).png)
 
 Medications Recommendations
->  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(478).png)
 
 Diet Recommendations
->  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(480).png)
 
 Workout Recommendations
->  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(471).png)
+>  ![](https://github.com/jay3425/AI-HealthCare-Center/blob/main/Screenshot%20(479).png)
 
 ---
 
