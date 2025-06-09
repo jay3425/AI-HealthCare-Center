@@ -66,7 +66,7 @@ This system predicts diseases based on user symptoms using a trained ML model, a
 1. **Install Dependencies**:
 
    ```bash
-   pip install numpy pandas scikit-learn
+   pip install numpy pandas scikit-learn groq json pickle
    ```
 
 2. **Run the App**:
